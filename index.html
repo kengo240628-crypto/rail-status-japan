@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#14283d">
+  <meta name="description" content="全国の鉄道運行情報を確認するためのサービス">
+  <title>全国鉄道運行情報</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="brand">
+      <div class="brand-icon" aria-hidden="true">🚆</div>
+      <div>
+        <h1>全国鉄道運行情報</h1>
+        <p>全国の鉄道の運行状況をチェック</p>
+      </div>
+    </div>
+    <div class="demo-banner">
+      開発中の試作版：表示データはサンプルです
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="summary-grid" aria-label="運行状況の集計">
+      <article class="summary-card">
+        <span>平常</span>
+        <strong id="normal-count">0</strong>
+        <small>路線</small>
+      </article>
+      <article class="summary-card">
+        <span>遅延</span>
+        <strong id="delay-count">0</strong>
+        <small>路線</small>
+      </article>
+      <article class="summary-card">
+        <span>運転見合わせ</span>
+        <strong id="suspended-count">0</strong>
+        <small>路線</small>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>運行情報を検索</h2>
+      <label for="search">路線名・鉄道会社・地域</label>
+      <input id="search" type="search"
+        placeholder="例：山手線、JR東日本、関東">
+
+      <label for="status-filter">運行状態</label>
+      <select id="status-filter">
+        <option value="all">すべての状態</option>
+        <option value="normal">平常</option>
+        <option value="delay">遅延</option>
+        <option value="suspended">運転見合わせ</option>
+        <option value="unknown">情報なし</option>
+      </select>
+
+      <button id="refresh-button" type="button">
+        表示を更新
+      </button>
+
+      <p id="update-time" class="muted">
+        更新状態を確認しています…
+      </p>
+    </section>
+
+    <section class="section-heading">
+      <h2>路線一覧</h2>
+      <span id="result-count">0路線</span>
+    </section>
+
+    <div id="route-list" class="route-list"
+      aria-live="polite"></div>
+
+    <section class="panel">
+      <h2>更新履歴</h2>
+      <p class="muted">
+        現在は画面の試験用です。実際の運行履歴は、
+        データベースを接続した後に保存します。
+      </p>
+      <ol id="history-list" class="history-list"></ol>
+    </section>
+
+    <p class="footer-note">
+      この試作版の表示は実際の運行状況を示すものではありません。
+      乗車前には各鉄道会社の公式情報をご確認ください。
+    </p>
+  </main>
+</body>
+</html>
